@@ -9,6 +9,7 @@ classDiagram
     BasePizza <|.. VegDelight
     BasePizza <|.. Margherita
     BasePizza <|.. ToppingDecorator
+    BasePizza *.. ToppingDecorator
 
     class BasePizza {
         <<Abstract>>

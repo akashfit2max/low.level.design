@@ -29,6 +29,7 @@ classDiagram
     ParkingStrategy <|-- NearToEntrace
     ParkingStrategy <|-- NearToEntraceAndElevator
     ParkingStrategy <|-- default
+    ParkingStrategy <|-- ParkingSpotManager
 
     class ParkingSpotManager {
         - List< ParkingSpot> parkingSlots
@@ -143,7 +144,7 @@ classDiagram
     Payment <|-- PaymentStrategy
     Payment <|-- CardPayment
     Payment <|-- CashPayment
-    
+
     class Payment {
         - PaymentStrategy paymentStrategy
         - makePayment(amount)

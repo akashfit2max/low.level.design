@@ -83,7 +83,7 @@ classDiagram
         - price()
     }
 
-    ParkingSpot <|-- Vechile : has-a
+    ParkingSpot <|-- Vechile: has-a
 
     class Vechile {
         - int vechileNo
@@ -96,14 +96,128 @@ classDiagram
         4W
         3W
     }
-    
-    Vechile <|-- Ticket : has-a
-    
-    
+
+    Vechile <|-- Ticket: has-a
+    ParkingSpot <|-- Ticket: has-a
+    ParkingSpotManager <|-- ParkingManagerFactory: has-a
+
     class Ticket {
         - long entryTime
         - Vechile vechile
         - ParkingSpot parkingSport
     }
+
+    class ParkingManagerFactory {
+    %%        factory pattern return sports on the basic of vechile type
+        - getParkingManager(VechileType type)
+    }
+
+    EntranceGate <|-- Ticket
+
+    class EntranceGate {
+        - ParkingManagerFactory parkingManagerFactory
+        - ParkingSpotManager parkingSpotManager
+        - Ticket ticket
+        - findSpace(vechileType, EGateNo)
+        - bookSpot(vechile)
+        - generateTicket(vechile, parkingSpot)
+    }
+
+    ExitGate <|-- CCFactory
+    CCFactory <|-- CostComputation
+    ExitGate <|-- ParkingSpotManager
+    ExitGate <|-- ParkingManagerFactory
+
+    class ExitGate {
+        - ParkingSpotManager parkingSpotManager
+        - ParkingManagerFactory parkingManagerFactory
+        - String paymentMethod
+        - Ticket ticker
+        - CCFactory ccFactory
+    %%            amounr = ccFactory.getCostComputation(ticket).price()
+        - priceCalculation()
+        - Payment payment
+        - removeVechile()
+    }
+
+    Payment <|-- PaymentStrategy
+    Payment <|-- CardPayment
+    Payment <|-- CashPayment
+    
+    class Payment {
+        - PaymentStrategy paymentStrategy
+        - makePayment(amount)
+    %%        paymentStrategy.makePayment(amount)
+    }
+
+    class CardPayment {
+        - CardPayment()
+    %%        super(CardStrategy())
+    }
+
+    class CashPayment {
+        - CardPayment()
+    %%        super(CardStrategy())
+    }
+
+    class PaymentFactory {
+        - getPayment(paymentMethod)
+    %%          paymentMethod basis
+    %%        return Payment Obj //(Cash/Card/UPI)
+    }
+
+    PaymentStrategy <|-- CashStrategy
+    PaymentStrategy <|-- CardStrategy
+
+    class PaymentStrategy {
+        - makePayment(amount)
+    }
+
+    class CashStrategy {
+        - makePayment(amount)
+    }
+
+    class CardStrategy {
+        - makePayment(amount)
+    }
+
+    class CCFactory {
+    %%       ticket.vechile.vechileType basic return CostComputation obj
+        - getCostComputation(Ticket)
+    }
+
+    PricingStrategy <|-- CostComputation
+    CostComputation <|-- TwoWheelerCostCmpu
+    CostComputation <|-- FourWheelerCostCmpu
+
+    class CostComputation {
+        - PricingStrategy strategy
+        - price(): strategy.price()
+    }
+
+    class TwoWheelerCostCmpu {
+        - TwoWheelerCostCmpu(): super(hourPS)
+    }
+
+    class FourWheelerCostCmpu {
+        - FourWheelerCostCmpu(): super(MPS)
+    }
+
+    PricingStrategy <|-- HourlyPricingStrategy
+    PricingStrategy <|-- MinutesPricingStrategy
+
+    class PricingStrategy {
+        - price()
+    }
+
+    class HourlyPricingStrategy {
+        - price(Ticket)
+    }
+
+    class MinutesPricingStrategy {
+        - price(Ticket)
+    }
+
+
 ```
 

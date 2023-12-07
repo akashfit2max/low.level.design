@@ -1,0 +1,35 @@
+@startuml
+left to right direction
+actor Student
+actor Instructor
+
+rectangle ReScaler {
+    usecase "Join class" as join
+    usecase "Schedule Mentor session" as schedule
+    usecase "Raise TA request" as raise
+    usecase "Solve assignment" as solve
+    usecase "Apply for job" as apply
+
+'    extends usecase
+    usecase "Join as a Host" as host
+    usecase "Join as audience" as audience
+    (host) .> (join) : extends
+    (audience) .> (join) : extends
+
+    usecase "Solve MCQ assignment" as mcq
+    usecase "Solve coding question" as job_test
+    (mcq) .> (solve) : extends
+    (job_test) .> (solve) : extends
+}
+
+Student --> join
+Student --> solve
+Student --> apply
+Student --> schedule
+Student --> raise
+
+Instructor --> join
+Instructor --> solve
+
+
+@enduml

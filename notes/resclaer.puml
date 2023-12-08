@@ -20,6 +20,13 @@ rectangle ReScaler {
     usecase "Solve coding question" as job_test
     (mcq) .> (solve) : extends
     (job_test) .> (solve) : extends
+
+'    include usecase
+    usecase "Check mentor availabilty" as mentor
+    (schedule) .> (solve) : includes
+
+    (apply) .> (job_test) : includes
+
 }
 
 Student --> join

@@ -23,6 +23,7 @@ import com.akash.low.level.design.designpatterns.Behavioral.observer.models.Bitc
 
 public class InMemoryBasedBitCoinManager extends Observable implements BitCoinManager {
 
+
     private Bitcoin bitcoin = new Bitcoin(0.0);
 
     @Override

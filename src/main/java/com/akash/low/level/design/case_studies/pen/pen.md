@@ -144,6 +144,74 @@ classDiagram
     Refill "1" --* "1" Ink
     Refill "1" --* "1" Nib
     Ink "*" --o "1" InkType
-    
 
+```
+
+## Problems
+```
+- Single Responsibility Principle is violated. There are multiple reasons to change the class such as modifying a single type of pen.
+- Open Closed Principle is violated. Adding a new type of pen requires changing the class.
+- Null checks are required for handling refill and ink for fountain pens.
+- Object creation is complex
+- duplication
+```
+## V2 - Multiple class 
+
+```mermaid
+classDiagram
+    class Pen {
+        <<abstract>>
+        - String brand
+        - String name
+        - PenType type
+        - Double price
+        - bool refillable
+        + write()* void
+        + changeRefill()* void
+    }
+
+    class GelPen {
+        - Refill refill
+        + write() void
+        + changeRefill(refill) void
+    }
+
+    class BallPen {
+        - Refill refill
+        + write() void
+        + changeRefill(refill) void
+    }
+
+    class FountainPen {
+        - Ink ink
+        - Nib nib
+        + write() void
+        + changeRefill(refill) void
+    }
+
+    class Refill {
+        - RefillType type
+        - Nib nib
+        - Ink ink
+    }
+
+    class Nib {
+        - double radius
+    }
+
+    class Ink {
+        - String color
+        - String brand
+        - InkType type
+    }
+
+    Pen <|-- GelPen
+    Pen <|-- BallPen
+    Pen <|-- FountainPen
+    GelPen "1" --* "1" Refill
+    BallPen "1" --* "1" Refill
+    FountainPen "1" --* "1" Ink
+    FountainPen "1" --* "1" Nib
+    Refill "1" --* "1" Ink
+    Refill "1" --* "1" Nib
 ```

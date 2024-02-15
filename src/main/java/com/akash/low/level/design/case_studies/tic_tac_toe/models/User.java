@@ -5,7 +5,8 @@ import lombok.Getter;
 
 @AllArgsConstructor
 @Getter
-public abstract class Player {
-    private GameSymbol symbol;
-    public abstract BoardCell play(Board board);
+public class User {
+    private String name;
+    private String emial;
+    private Byte[] photo;
 }

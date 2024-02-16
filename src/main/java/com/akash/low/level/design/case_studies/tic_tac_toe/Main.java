@@ -14,7 +14,12 @@ public class Main {
 
         List<Player> players = new ArrayList<>(Arrays.asList(human, bot));
 
-        Game game = Game.createGame(players, 3, 4);
+        Game game = Game.createGame(players, 3, 3);
+        game.displayBoard();
 
+        System.out.println("start the game");
+        game.makeMove(human,game.getBoard());
+        game.makeMove(bot,game.getBoard());
+        game.displayBoard();
     }
 }

@@ -1,12 +1,16 @@
 # Design a parking lot
 
-> A parking lot or car park is a dedicated cleared area that is intended for parking vehicles. In most countries where cars are a major mode of transportation, parking lots are a feature of every city and suburban area. Shopping malls, sports stadiums, megachurches, and similar venues often feature parking lots over large areas
+> A parking lot or car park is a dedicated cleared area that is intended for parking vehicles. In most countries where
+> cars are a major mode of transportation, parking lots are a feature of every city and suburban area. Shopping malls,
+> sports stadiums, megachurches, and similar venues often feature parking lots over large areas
 [Reference](https://github.com/tssovi/grokking-the-object-oriented-design-interview/blob/master/object-oriented-design-case-studies/design-a-parking-lot.md)
 
 ![Parking Lot](
 https://github.com/tssovi/grokking-the-object-oriented-design-interview/raw/master/media-files/parking-lot.png)
 
-> Parking lot is an open area designated for parking cars. We will design a parking lot where a certain number of cars can be parked for a certain amount of time. The parking lot can have multiple floors where each floor carries multiple slots. Each slot can have a single vehicle parked in it.
+> Parking lot is an open area designated for parking cars. We will design a parking lot where a certain number of cars
+> can be parked for a certain amount of time. The parking lot can have multiple floors where each floor carries multiple
+> slots. Each slot can have a single vehicle parked in it.
 [Reference](https://medium.com/double-pointer/system-design-interview-parking-lot-system-ff2c58167651)
 
 
@@ -15,6 +19,7 @@ https://github.com/tssovi/grokking-the-object-oriented-design-interview/raw/mast
 ## Requirements gathering
 
 What are some questions you would ask to gather requirements?
+
 ```
 1. can a parking lot have multiple floors 
 2. can a parking lot have multiple entrance
@@ -29,7 +34,9 @@ What are some questions you would ask to gather requirements?
 ```
 
 ## Requirements
+
 Build an online parking lot management system that can support the following requirements:
+
 * Should have multiple floors.
 * Multiple entries and exit points.
 * A person has to collect a ticket at entry and pay at or before exit.
@@ -59,7 +66,9 @@ Are the requirements clear enough to define use cases?
 If not, try to think of the actors and their interactions with the system.
 
 ### Actors
+
 What would be the actors in this system?
+
 ```
 1. Parking attendant
 2. customer
@@ -75,16 +84,19 @@ What would be the use cases i.e. the interactions between the actors and the sys
 Name of the actor - `Admin `
 
 Use cases:
+
 ```
 1. create a parking lot
 2. create a parking floor
 3. add new parking spots
 4. update status of a parking spot
 ```
+
 #### Actor 2
 
 Name of the actor - `parking attendent `
 Use cases:
+
 ```
 1. check empty slots
 2. issue a ticket
@@ -96,12 +108,14 @@ Use cases:
 
 Name of the actor - `customer `
 Use cases:
+
 ```
 1. collected ticket
 2. do payment
 3. check status - empty slots
 4. check price
 ```
+
 Add more actors and their use cases as needed.
 
 **Create a use case diagram for the system.**
@@ -147,11 +161,14 @@ Look at the use cases and try to design APIs for each of them.
 You can simply write the APIs in the following format:
 `API name` - `HTTP method` - `URL` - `?Request body` - `?Response body`
 
-You could also use a tool like [Swagger](https://swagger.io/) to design the APIs or follow [this](https://github.com/jamescooke/restapidocs) repository for a simple way to use Markdown to structure your API documentation.
+You could also use a tool like [Swagger](https://swagger.io/) to design the APIs or
+follow [this](https://github.com/jamescooke/restapidocs) repository for a simple way to use Markdown to structure your
+API documentation.
 
 ### APIs for Actor 1
 
 #### APIs Category 1
+
 ```markdown
 * `API name` - `HTTP method` - `URL` - `?Request body` - `?Response body`
 ```
@@ -159,6 +176,7 @@ You could also use a tool like [Swagger](https://swagger.io/) to design the APIs
 ### APIs for Actor 2
 
 #### APIs Category 1
+
 ```markdown
 * `API name` - `HTTP method` - `URL` - `?Request body` - `?Response body`
 ```
@@ -166,6 +184,7 @@ You could also use a tool like [Swagger](https://swagger.io/) to design the APIs
 ### APIs for Actor 3
 
 #### APIs Category 1
+
 ```markdown
 * `API name` - `HTTP method` - `URL` - `?Request body` - `?Response body`
 ```
@@ -174,17 +193,71 @@ You could also use a tool like [Swagger](https://swagger.io/) to design the APIs
 
 What will be the major classes and their attributes?
 
-```
-    Class name
-        - Attribute 1
-        - Attribute 2
-        ...
-```
+* ParkingLot
+    * name
+    * address
+    * parking floors
+    * entry gates
+    * exit gates
+    * display board
+* ParkingFloor
+    * floor number
+    * parking spot
+    * display board
+    * payment counter
+* ParkingSpot
+    * status - `occupied , available, out of order`
+    * spot type - `small , medium, large`
+* ParkingTicket
+    * start time
+    * vehicle
+    * parking spot
+    * entry gate
+    * parking attendant
+* Invoice
+    * exit time
+    * amount
+    * parking ticket
+    * payment
+* Payment
+    * amount
+    * invoice
+    * mode - `cash,credit,UPI`
+    * status - `pending , done`
+    * time
+* Vehicle
+    * type - `car,bike,truck`
+    * vehicle number
+* Display Board
+* Payment Counter
+* Entry Gate
+    * parking attendant
+    * displayboard
+* Exit Gate
+    * payment counter
+    * parking attendant
 
-List down the cardinalities of the relationships between the classes.
-```
-```
+## List down the cardinalities of the relationships between the classes.
+
+* `ParkingLot` - `ParkingFloor` - One to many
+* `ParkingLot` - `ParkingGate` - `entryGates` - One to many
+* `ParkingLot` - `ParkingGate` - `exitGates` - One to many
+* `ParkingFloor` - `ParkingSpot` - One to many
+* `Invoice` - `Payment` - One to One
+* `ParkingGate` - `ParkingAttendant` - `currentGate` - One to one
+* `ParkingSpot` - `ParkingTicket` - One to many
+* `ParkingTicket` - `Invoice` - One to one
+* `ParkingTicket` - `Vehicle` - Many to one
+* `ParkingTicket` - `ParkingSpot` - Many to one
+* `Payment` - `ParkingTicket` - One to one
 
 Draw the class diagram.
-```
+
+```mermaid
+classDiagram
+    class ParkingLot {
+        -String name
+        
+        
+    }
 ```

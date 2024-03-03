@@ -35,6 +35,7 @@ public class ParkingLotRequest {
                 .name(name)
                 .address(address)
                 .floors(parkingFloors)
+                .displayBoard(DisplayBoard.builder().build())
                 .entryGates(Collections.nCopies(numberOfFloors, EntryGate.builder().build()))
                 .exitGates(Collections.nCopies(numberOfFloors, ExitGate.builder().build()))
                 .build();

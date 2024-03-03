@@ -8,12 +8,17 @@ import java.time.LocalDateTime;
 @Data
 @SuperBuilder
 public class Ticket extends BaseModel {
-    private String ticketId;
-    private String vehicleId;
-    private VehicleType vehicleType;
-    private Integer floorNumber;
-    private Integer slotNumber;
+    private Long vehicleId;
+    private Vehicle vehicle;
+
+    private Long parkingSpotId;
+    private ParkingSpot parkingSpot;
+
     private LocalDateTime entryTime;
-    private LocalDateTime exitTime;
-    private TicketStatus status;
+
+    private Long issuerId;
+    private Operator issuedBy;
+
+    private Long entryGateId;
+    private Gate entryGate;
 }

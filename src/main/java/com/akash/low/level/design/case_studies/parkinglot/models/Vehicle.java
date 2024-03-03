@@ -7,4 +7,5 @@ import lombok.experimental.SuperBuilder;
 @SuperBuilder
 public class Vehicle extends BaseModel {
     private VehicleType type;
+    private String LicenseNumber;
 }

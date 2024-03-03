@@ -1,6 +1,7 @@
 package com.akash.low.level.design.case_studies.parkinglot.repository;
 
 import com.akash.low.level.design.case_studies.parkinglot.models.ParkingSpot;
+import com.akash.low.level.design.case_studies.parkinglot.models.SpotStatus;
 import com.akash.low.level.design.case_studies.parkinglot.models.VehicleType;
 
 import java.util.ArrayList;
@@ -42,6 +43,11 @@ public class ParkingSpotRepository {
     }
 
     public ParkingSpot findOneByVehicleTypeAndStatusAvailable(VehicleType vehicleType) {
+        for (ParkingSpot parkingSpot : parkingSpots) {
+            if (parkingSpot.getSpotStatus() == SpotStatus.AVAILABLE && parkingSpot.getVehicleType() == vehicleType) {
+                return parkingSpot;
+            }
+        }
         return null;
     }
 }

@@ -4,4 +4,5 @@ import lombok.experimental.SuperBuilder;
 
 @SuperBuilder
 public class DisplayBoard extends BaseModel {
+    // display the vechicle status
 }

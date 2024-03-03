@@ -10,7 +10,7 @@ import lombok.AllArgsConstructor;
 public class ParkingLotController {
 
     private ParkingLotService parkingLotService;
-    private ParkingSpotService parkingSpotService;
+
     public ParkingLot createParkingLot(ParkingLotRequest request) {
         return parkingLotService.createParkingLot(request.toParkingLot());
     }

@@ -5,13 +5,15 @@ import com.akash.low.level.design.case_studies.cache.models.EventType;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.ThreadLocalRandom;
 
-public class RandomEvictionStrategy<K> implements EvictionStrategy<K>, Consumer<K> {
+public class RandomEvictionStrategy<K, V> implements EvictionStrategy<K, V>, Consumer<K> {
     private List<K> keys = new ArrayList<>();
 
     @Override
     public K evict() {
-        return null;
+        int randomIndex = ThreadLocalRandom.current().nextInt(keys.size()) % keys.size();
+        return keys.get(randomIndex);
     }
 
     @Override

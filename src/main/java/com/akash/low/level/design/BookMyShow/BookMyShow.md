@@ -135,21 +135,61 @@ left to right direction
 ## Class diagrams
 
 What will be the major classes and their attributes?
+
+we cant attach status with the seat as it will book it for all shows as its a physical seat
+
 * City
-  * name
-  * Theaters
+    * name
+    * state
+    * Theaters
 * Theaters
-  * name
-  * address
-  * Halls
-  * Shows
+    * name
+    * address
+    * Halls
+    * Shows
+    * lat/lng
 * Hall
-  * name
-  * Seats
-  * Shows
+    * name
+    * Seats
+    * Shows
 * Seat
-  * number
-  * 
+    * number
+    * SeatType - `gold` `platinum` `diamond`
+* Show
+    * start time
+    * Movie
+    * language
+    * end time
+    * features
+    * showSeats
+* Movie
+    * name
+    * rating
+    * category
+    * languages
+    * Shows
+    * duration
+    * features
+* ShowSeat
+    * Seat
+    * satus - `available` `booked`
+    * price
+* Ticket
+    * Show
+    * Seats - selected seats
+    * amount
+    * User
+    * Payment
+    * Status - `booked` `cancelled`
+* Payment
+    * amount
+    * Mode - `UPI` `Cash` `Netbanking`
+    * Ticket
+    * Status - `success` `failed`
+* User
+    * name
+    * age
+
 ```
 ```
 

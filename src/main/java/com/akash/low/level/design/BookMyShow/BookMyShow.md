@@ -195,7 +195,113 @@ we cant attach status with the seat as it will book it for all shows as its a ph
 
 Draw the class diagram.
 
-```
+```mermaid
+classDiagram
+    class City {
+        -String name
+        -String state
+        -Theater[] theaters
+    }
+    class Theater {
+        -String name
+        -String address
+        -Hall[] halls
+        -Show[] shows
+    }
+    class Hall {
+        -String name
+        -Seat[] seats
+        -Show[] shows
+    }
+    class Seat {
+        -String number
+        -SeatType seatType
+    }
+    class SeatType {
+        <<enumeration>>
+        GOLD
+        PLATINUM
+        DIAMOND
+    }
+    class Show {
+        -Date startTime
+        -Movie movie
+        -String language
+        -Date endTime
+        -String feature
+        -ShowSeat[] showSeat
+    }
+    class Movie {
+        -String name
+        -String rating
+        -String category
+        -Strin[] languages
+        -Show[] shows
+        -int duration
+        -String features
+    }
+    class ShowSeat {
+        -Seat seat
+        -SeatStatus seatStatus
+        -Show show
+    }
+    class SeatStatus {
+        <<enumeration>>
+        AVAILABLE
+        BOOKED
+    }
+    class Ticket {
+        -Show show
+        -Seat[] seats
+        -double amount
+        -User user
+        -Payment paymet
+        -TicketStatus ticketStatus
+    }
+    class TicketStatus {
+        <<enumeration>>
+        BOOKED
+        CANCELLED
+    }
+    class Payment {
+        -double amount
+        -PaymentMode paymentMode
+        -Ticket ticket
+        -PaymentStatus paymentStatus
+    }
+    class PaymentMode {
+        <<enumeration>>
+        UPI
+        CASH
+        NETBANKING
+    }
+    class PaymentStatus {
+        <<enumeration>>
+        SUCCESS
+        FAILED
+    }
+    class User {
+        -String name
+        -String age
+    }
+
+    City "1" --* "*" Theater
+    Theater "1" --* "*" Hall
+    Theater "1" --* "*" Show
+    Hall "1" --* "*" Seat
+    Hall "1" --* "*" Show: multiple
+    Seat "1" --* "1" SeatType
+    Show "1" --o "*" Movie
+    Show "1" --* "*" ShowSeat
+    ShowSeat "*" --* "1" SeatStatus
+    Ticket "1" --o "1" Show
+    Ticket "1" --o "*" Seat
+    Ticket "1" --o "1" User
+    Ticket "1" --o "1" Payment
+    Ticket "*" --o "1" TicketStatus
+    Payment "*" --o "1" PaymentMode
+    Payment "*" --o "1" PaymentStatus
+
 ```
 
 ## API design

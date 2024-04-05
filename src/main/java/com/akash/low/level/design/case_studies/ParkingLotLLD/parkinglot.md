@@ -101,12 +101,14 @@ classDiagram
         -Ticket ticket
         -CostComputaion cost
         -Payment payment
-        -ParkingSpotFactory parking+
+        -ParkingSpotFactory parking
+        -ParkingSpotManager manager
     }
 
     class CostComputaion {
+        <<abstract>>
         -PricingStrategy pricingStrategy
-        +price() 
+        +price()
     }
     class TwoWheelerCostComputaion {
         +TwoWheelerCostComputaion() super(PS)
@@ -119,6 +121,7 @@ classDiagram
     TwoWheelerCostComputaion --* FourWheelerCostComputaion
 
     class PricingStrategy {
+        <<interface>>
         +price()
     }
     class HourlyPS {
@@ -131,5 +134,17 @@ classDiagram
     CostComputaion --* PricingStrategy
     PricingStrategy --* HourlyPS
     HourlyPS --* MinutesPS
+    ExitGate --* CostComputaion
+
+    class Payment {
+    }
+
+    ExitGate --* Payment
+    ExitGate --* ParkingSpotManager
+    ExitGate --* ParkingSpotFactory
+    ParkingStrategy <|-- NearToEntrance
+    ParkingStrategy <|-- NearToEntranceAndLift
+    ParkingStrategy <|-- Default
+    TwoWheelerManager --* ParkingStrategy
 
 ```

@@ -11,4 +11,7 @@ public class VehicleRentalSystem {
     List<Store> storeList;
     List<User> userList;
 
+    public Store getStore(Location location) {
+        return storeList.get(0);
+    }
 }

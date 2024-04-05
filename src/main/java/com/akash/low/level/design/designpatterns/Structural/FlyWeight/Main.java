@@ -9,7 +9,7 @@ public class Main {
         bulletRegistery.addBullet(BulletType.B_9MM, bullet2);
 
         FlyingBullet fb = FlyingBullet.builder().x(10).y(12).z(12).angle(12).build();
-        FlyingBullet f2 = FlyingBullet.builder().x(10).y(12).z(12).angle(12).build();
+        FlyingBullet f2 = FlyingBullet.builder().x(11).y(15).z(12).angle(12).build();
 
         System.out.println(fb.getBullet() == f2.getBullet()); // the bullet object is common in both the objects
     }

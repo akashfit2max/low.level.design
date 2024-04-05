@@ -11,4 +11,6 @@ import java.util.List;
 @AllArgsConstructor
 public class VehicleInventoryManagement {
     List<Vehicle> vehicles;
+
+    // all crud operations
 }

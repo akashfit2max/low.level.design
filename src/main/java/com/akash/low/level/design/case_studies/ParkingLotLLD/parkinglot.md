@@ -76,8 +76,10 @@ classDiagram
     class Ticket {
         -Date entryTime
         -Vehicle vehicle
+        -ParkingSpot parkingSpot
     }
-
+    
+    Ticket --* ParkingSpot
     Ticket --* Vehicle
 
     class EntryGate {

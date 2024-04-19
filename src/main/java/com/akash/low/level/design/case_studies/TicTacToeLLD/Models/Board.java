@@ -4,8 +4,6 @@ package com.akash.low.level.design.case_studies.TicTacToeLLD.Models;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.sun.tools.javac.util.Pair;
-
 public class Board {
     public int size;
     public PlayingPiece[][] board;
@@ -44,7 +42,7 @@ public class Board {
     }
 
     public boolean addPiece(int row, int column, PlayingPiece playingPiece) {
-
+        if (row >= size || column >= size) return false;
         if (board[row][column] != null) {
             return false;
         }

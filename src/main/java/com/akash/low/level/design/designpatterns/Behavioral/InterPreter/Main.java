@@ -6,7 +6,8 @@ public class Main {
         context.put("a", 10);
         context.put("b", 2);
 
-        AbstractExpression abstractExpression = new MultiplyNonTerminalExpression(new NumberTerminalExpression("a"), new NumberTerminalExpression("b"));
+        AbstractExpression abstractExpression = new MultiplyNonTerminalExpression(new NumberTerminalExpression("a"),
+                new AddNonTerminalExpression(new NumberTerminalExpression("a"), new NumberTerminalExpression("b")));
         int val = abstractExpression.interpreter(context);
         System.out.println(val);
     }

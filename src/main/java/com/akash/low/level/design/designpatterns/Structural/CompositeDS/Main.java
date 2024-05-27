@@ -1,6 +1,8 @@
 package com.akash.low.level.design.designpatterns.Structural.CompositeDS;
 
 public class Main {
+
+    // object inside object
     public static void main(String[] args) {
         Directory movieDirectory = new Directory("Movie");
         FileSystem border = new File("Border");

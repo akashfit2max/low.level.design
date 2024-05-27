@@ -6,5 +6,6 @@ public class DoubleRoom implements Room {
 
     @Override
     public void accept(RoomVisitor visitor) {
+        visitor.visit(this);
     }
 }

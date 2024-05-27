@@ -12,14 +12,17 @@ public class EmplyeeDaoProxy implements EmployeeDao {
     public void create(Employee employee) {
         if (employee.getAge() > 10) {
             employeeDao.create(employee);
-        }
-        else {
+        } else {
             System.out.println("wrong");
         }
     }
 
     @Override
     public void delete(Employee employee) {
-
+        if (employee.getAge() < 15) {
+            System.out.println("cant delete");
+        } else {
+            employeeDao.delete(employee);
+        }
     }
 }

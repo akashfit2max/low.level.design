@@ -2,7 +2,12 @@
 classDiagram
     class ATMState {
         <<abstract>>
-        +insertCard()
+        +insertCard(ATM, Card)
+        +authPin(ATM, card, pin)
+        +selectOperation(ATM, Card, Transaction)
+        +cashWithdrawl(atm, card, pin)
+        +displayBal(atm, card)
+        +exit(atm)
     }
     class IdelState {
         +insertCard()

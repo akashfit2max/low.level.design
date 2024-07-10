@@ -6,3 +6,6 @@ public interface RoomVisitor {
     void visit(DoubleRoom doubleRoom);
 
 }
+
+
+// double dispatch

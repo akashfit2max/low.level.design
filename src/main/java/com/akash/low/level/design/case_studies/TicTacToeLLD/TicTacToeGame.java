@@ -49,7 +49,8 @@ public class TicTacToeGame {
 
             boolean pieceAddedSuccessfully = board.addPiece(x, y, playerTurn.playingPiece);
             if (!pieceAddedSuccessfully) {
-                System.out.println("Incorredt possition chosen, try again");
+                String place = String.format("Incorrect position %s and %s", x, y);
+                System.out.println(place + "chosen, try again ");
                 players.addFirst(playerTurn);
                 continue;
             }
